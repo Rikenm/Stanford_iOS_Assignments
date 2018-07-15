@@ -1,6 +1,6 @@
 //: Playground - noun: a place where people can play
 
-import UIKit
+//import UIKit
 
 //Core OS - UNIX in the C
 //Core Services layer - SQLITE, NEtWorking, Core Location, Threading, Preferences, Threading, Net Services
@@ -170,10 +170,80 @@ import UIKit
 //let fontToUse = metrics.scaledFont(for: font)
 
 
+// lecture 6
+
+// multiTouch and little bit of Drawing
+
+// Ui view comes with drawrect
+
+// u can draw using subview or drawing rect
+// add.subview is drawing using subview. u can drag UIVIew
+//u need context to draw using Core Graphics
+// you draw in bounds
+
+// if let context = UIGraphicsGetCurrentContext(){
+
 //
+//context.addArc(center: CGPoint(x: bounds.midX, y: bounds.midY), radius: 100, startAngle: 0, endAngle: 2*CGFloat.pi, clockwise: true)
+//}
+
+// path is a consumable thing. onceyou draw it. there's no fill the path as path is gone
+// when we go from land to prot or from prot to land --> we need to redraw y selectingthe inspect option.
+
+//when drawing roundRect. make view's background be clear as white on white might not be good
+
+// to addsubview.. overwrite layoutSubviews.
+
+//traitColectionDidChange for font change, resource change
+
+// setNeedsDisplay -> redraw , setNeedsLayout ->layoutSubviews
+
+// we program at a label of tap, and many gestures
+
+//two parts -> i) tell a view to recognize the taps (controler/ sometime view does it)ii) and provide handlers (view and controllers)
 
 
-class Interceptor: 
+// usually gesture recognizer are added in the didset of UIView. these are called when ios hook up this outlet at runtime
+// init gesture recog. target (may be view or controller self) is notified and finally action is the method invoked on recognization
+
+
+// handler
+
+
+
+//MVCS
+
+// navVC , tabVC have a array called viewCOntrollers that stores all the View Controller for the view.
+
+// how to get the tabVC and NavVc themselves: Every UIVC knows the split View, TabBAr or NAv VC it is currently in. These are UIViewCOntroller Properties
+// like splitVIewCOntroller, tabBarController, navigationController
+
+
+//Nav had push and pop vc method but we dont;t do this we use swgue
+// before you do segue you might need to prepare segue by initing some variable for new VC. Every segue creates new VC. [important point]
+
+// prepeate (for Sugue: UIStoryboard, sender: ANy)
+
+
+// identifier frm
+// segue identifier like detail view getting graph for detailVC .
+
+// remember that the views outlets in the recievers VC are nil,
+
+// should preform segue can stop segue from hapeening
+
+// need identifier for segues as there can be multiple sugues happening from one sugue
+
+// two ways to segue... from code(generic) and from the storyBoard
+
+// code . some button click calls performSegue(withIdentifier:   ,sender: button or on screen click )
+
+// story . just drag from a button to the destination VC.
+
+
+// iphone has no detailView. It uses navigation 
+
+
 
 
 
