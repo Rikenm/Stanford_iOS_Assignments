@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA0EEA4220FC1A7600CCE116 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0EEA4120FC1A7600CCE116 /* Grid.swift */; };
+		EA0EEA4420FC252B00CCE116 /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0EEA4320FC252B00CCE116 /* MyView.swift */; };
 		EAEA5DC120F845D2000E136C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEA5DC020F845D2000E136C /* AppDelegate.swift */; };
 		EAEA5DC320F845D2000E136C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEA5DC220F845D2000E136C /* ViewController.swift */; };
 		EAEA5DC620F845D2000E136C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAEA5DC420F845D2000E136C /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA0EEA4120FC1A7600CCE116 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		EA0EEA4320FC252B00CCE116 /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
 		EAEA5DBD20F845D2000E136C /* HW3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HW3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAEA5DC020F845D2000E136C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAEA5DC220F845D2000E136C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,10 +65,12 @@
 				EAEA5DD220F85033000E136C /* Model */,
 				EAEA5DC020F845D2000E136C /* AppDelegate.swift */,
 				EAEA5DC220F845D2000E136C /* ViewController.swift */,
+				EA0EEA4120FC1A7600CCE116 /* Grid.swift */,
 				EAEA5DC420F845D2000E136C /* Main.storyboard */,
 				EAEA5DC720F845D4000E136C /* Assets.xcassets */,
 				EAEA5DC920F845D4000E136C /* LaunchScreen.storyboard */,
 				EAEA5DCC20F845D4000E136C /* Info.plist */,
+				EA0EEA4320FC252B00CCE116 /* MyView.swift */,
 			);
 			path = HW3;
 			sourceTree = "<group>";
@@ -149,9 +155,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA0EEA4420FC252B00CCE116 /* MyView.swift in Sources */,
 				EAEA5DC320F845D2000E136C /* ViewController.swift in Sources */,
 				EAEA5DD420F8504B000E136C /* Card.swift in Sources */,
 				EAEA5DC120F845D2000E136C /* AppDelegate.swift in Sources */,
+				EA0EEA4220FC1A7600CCE116 /* Grid.swift in Sources */,
 				EAEA5DD620F85058000E136C /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,7 +306,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MYR79F655Y;
-				INFOPLIST_FILE = HW2/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/HW3/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,7 +324,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MYR79F655Y;
-				INFOPLIST_FILE = HW2/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/HW3/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

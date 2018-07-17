@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class MyView: UIView {
     
     var rank:Int = 5{ didSet{ setNeedsDisplay();setNeedsLayout()}} //setNeedsDisplay to redraw . setNeeds layout needs for subviews drawing}
@@ -34,11 +35,11 @@ class MyView: UIView {
         
     }
     
-    private var CornerString: NSAttributedString{
-    
-            return centeredAttributedString(rank+"\n", fontSize: 0.0)
-    
-    }
+//    private var CornerString: NSAttributedString{
+//    
+//            return centeredAttributedString(rank+"\n", fontSize: 0.0)
+//    
+//    }
 
     
     

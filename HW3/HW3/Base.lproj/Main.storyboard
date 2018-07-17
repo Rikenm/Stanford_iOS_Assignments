@@ -14,11 +14,19 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HW2" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HW3" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="redraw" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8W3-tB-tz2">
+                                <rect key="frame" x="0.0" y="314" width="375" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="3 more cards"/>
+                                <connections>
+                                    <action selector="threeMoreCards:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u34-lI-r2T"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="hMz-u0-yTU">
                                 <rect key="frame" x="0.0" y="20" width="375" height="332"/>
                                 <subviews>
@@ -27,7 +35,6 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3oa-tb-2Qq">
                                                 <rect key="frame" x="0.0" y="0.0" width="68.5" height="38"/>
-                                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="touchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SeM-RU-oSV"/>
                                                 </connections>
@@ -64,7 +71,6 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOg-Lf-fG9">
                                                 <rect key="frame" x="0.0" y="0.0" width="68.5" height="38"/>
-                                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="touchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JL3-E5-w7J"/>
                                                 </connections>
@@ -207,15 +213,6 @@
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pf6-Qb-rKo">
                                         <rect key="frame" x="0.0" y="294" width="375" height="38"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8W3-tB-tz2">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
-                                                <state key="normal" title="3 more Cards"/>
-                                                <connections>
-                                                    <action selector="threeMoreCards:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u34-lI-r2T"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -223,15 +220,27 @@
                                     <constraint firstItem="PAs-5C-TwQ" firstAttribute="top" secondItem="hMz-u0-yTU" secondAttribute="top" constant="245" id="u0d-hF-Id8"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qHF-rc-FhP">
-                                <rect key="frame" x="0.0" y="464" width="375" height="203"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Ff1-nB-IA4" customClass="MyView" customModule="HW3" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="587"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dM-Wj-VEl">
+                                <rect key="frame" x="136" y="617" width="102" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="102" id="soV-Fg-yBv"/>
+                                </constraints>
+                                <state key="normal" title="33 more Cards"/>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Ff1-nB-IA4" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="0FM-pn-0Fy"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hMz-u0-yTU" secondAttribute="trailing" id="20g-ZL-D4G"/>
+                            <constraint firstItem="Ff1-nB-IA4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" symbolic="YES" id="AdY-Hp-lzw"/>
+                            <constraint firstItem="Ff1-nB-IA4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RVK-Ak-pV3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ff1-nB-IA4" secondAttribute="bottom" constant="60" id="S4L-sM-MNO"/>
+                            <constraint firstItem="8dM-Wj-VEl" firstAttribute="top" secondItem="Ff1-nB-IA4" secondAttribute="bottom" constant="10" id="WFa-ht-OR5"/>
+                            <constraint firstItem="8dM-Wj-VEl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fJJ-tW-fwO"/>
                             <constraint firstItem="hMz-u0-yTU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gjm-Jw-jNq"/>
                             <constraint firstItem="hMz-u0-yTU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="s8I-EH-8lc"/>
                         </constraints>
@@ -239,7 +248,6 @@
                     </view>
                     <connections>
                         <outlet property="myView" destination="MH9-Sh-drq" id="7Ji-Rg-gva"/>
-                        <outlet property="myView2" destination="qHF-rc-FhP" id="PfV-Zp-fQY"/>
                         <outletCollection property="buttonCards" destination="3oa-tb-2Qq" collectionClass="NSMutableArray" id="2Mr-SK-Ogj"/>
                         <outletCollection property="buttonCards" destination="vyc-wm-LF4" collectionClass="NSMutableArray" id="voW-4d-Eh8"/>
                         <outletCollection property="buttonCards" destination="gMQ-w0-APa" collectionClass="NSMutableArray" id="j18-gH-ONi"/>
