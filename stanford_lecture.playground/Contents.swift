@@ -1,6 +1,6 @@
 //: Playground - noun: a place where people can play
 
-//import UIKit
+import UIKit
 
 //Core OS - UNIX in the C
 //Core Services layer - SQLITE, NEtWorking, Core Location, Threading, Preferences, Threading, Net Services
@@ -241,7 +241,58 @@
 // story . just drag from a button to the destination VC.
 
 
-// iphone has no detailView. It uses navigation 
+// iphone has no detailView. It uses navigation .. detail and master.
+
+
+//animation
+
+// property animation
+
+// with UIviewPropertyAniomator: Donw with a closure
+
+
+
+//class func runninPropertyAnimator {
+// with duration
+//delay
+//options
+//animations () -> Void
+//completion: another closure
+//}
+
+
+// another kind of animation. Flipping the card.
+
+// create an animator.  var animator = UIDynamicAimator(referenceView: UIView)
+// then say how the animation behave like gravity, frivtion, collisoion  .. let gravity = UIGravityBEhavior(); animator.addBrhavior(gravity)...
+// add item to the behavior. let item1: UIDynamicItem = some UIView/ gravity.addItem(item1)
+
+// func updateItemUsingCurrentState(item:UIDynamicItem)
+// animator owns your view so if you change something, you need to provide changes through this method to the animator
+//
+
+//UIGravityBehavior
+// UIAttachmentBEhavior
+//collision boundary
+//UISnapBehavior
+// can join these behaviors using subclass
+
+
+// detour closure
+
+// memory cycle
+
+//class Zerg{
+//
+//    privatr var foo = { or [weak self = self] in
+//
+//        self.bar() // use weakSelf
+//    }
+//    func bar(){}
+//}
+
+// zerg has reference to foo, foo is a closure and captures self AKA zerg, creating a memory cycle
+
 
 
 

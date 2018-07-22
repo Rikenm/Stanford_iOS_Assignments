@@ -8,11 +8,25 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+
+
+
+class ViewController: UIViewController, Click {
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     var game = Game()
     
-    @IBOutlet weak var myView: UIView!
+    @IBOutlet weak var myview: MyView!
+    
     var buttonsSelected = [Int]()
     
     @IBOutlet weak var myView2: UIView!
@@ -26,58 +40,43 @@ class ViewController: UIViewController {
     
     static var symbols = ["●", "▲", "■"]
     
+    var buttonSelectedViews = [View2]()
     
     
-    @IBOutlet var buttonCards: [UIButton]!
-    
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        initiliazeViewFromModel()
+    func buttonClicked(myview: View2) {
         
-    }
-    
-    
-  
-    @IBAction func threeMoreCards(_ sender: UIButton) {
-        game.getThreeCards()
-         updateViewFromModel()
-        
-    }
-    
-    
-    
-    @IBAction func touchButton(_ sender: UIButton) {
-        
-        if let cardNumber = buttonCards.index(of: sender){
-        
-            if buttonsSelected.count <= 2,game.cards[cardNumber].isBeingPlayed {
+        if let cardNumber = myview.id{
+            
+            
+            if allViews.count <= 2,game.cards[cardNumber].isBeingPlayed {
                 
-                sender.layer.borderWidth = 3.0
-                sender.layer.borderColor = UIColor.blue.cgColor
+                myview.layer.borderWidth = 3.0
+                myview.layer.borderColor = UIColor.blue.cgColor
                 buttonsSelected.append(cardNumber)
+                buttonSelectedViews.append(myview)
                 
             }
+            //
         
-        }
         
         if buttonsSelected.count == 3{
             
             
-           
-            let firstIndex = buttonsSelected[0]; buttonCards[firstIndex].layer.borderWidth = 0
-            let secondIndex = buttonsSelected[1]; buttonCards[secondIndex].layer.borderWidth = 0
-            let thirdIndex = buttonsSelected[2]; buttonCards[thirdIndex].layer.borderWidth = 0
-           
-           
+            
+            let firstIndex = buttonsSelected[0];  buttonSelectedViews[firstIndex].layer.borderWidth = 0
+            let secondIndex = buttonsSelected[1];  buttonSelectedViews[secondIndex].layer.borderWidth = 0
+            let thirdIndex = buttonsSelected[2];  buttonSelectedViews[thirdIndex].layer.borderWidth = 0
             
             
             
             
-           buttonsSelected.removeAll()
-
-         let didWin =  game.threeCardsSelected(at: firstIndex, at: secondIndex, at: thirdIndex)
-          
+            
+            
+            buttonsSelected.removeAll()
+            buttonSelectedViews.removeAll()
+            
+            let didWin =  game.threeCardsSelected(at: firstIndex, at: secondIndex, at: thirdIndex)
+            
             
             
             
@@ -89,31 +88,81 @@ class ViewController: UIViewController {
             }
             
             
-         updateViewFromModel()
+            updateViewFromModel()
             
-        // remove cards from buttonsSelected
+            // remove cards from buttonsSelected
             
         }
         
-   
+        
+    }
+}
+    
+    
+    var allViews = [View2]()
+    
+    
+    
+    @IBOutlet var buttonCards: [UIButton]!
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        initiliazeViewFromModel()
+        
+        let myview2 = MyView(frame: CGRect(x: view.frame.minX, y: view.frame.minY+30, width: view.frame.width, height: view.frame.height-100))
+        myview2.backgroundColor = .white
+        // do dependency injection
+        
+        myview2.type = [1,2,0,1,0]
+        
+        myview2.delegate = self
+        
+        
+        
+        
+        
+        self.view.addSubview(myview2)
+        
+//        initiliazeViewFromModel()
+        
+        
+        
+        
+        
+        
     }
     
     
+  
+    @IBAction func threeMoreCards(_ sender: UIButton) {
+        game.getThreeCards()
+         updateViewFromModel() // here 
+        
+    }
+    
+    
+    
+
+    
+    
     func updateViewFromModel(){
-        for index in buttonCards.indices{
+        for index in  MyView.allmyViews.indices{
             
-            let button = buttonCards[index]
-            let card = game.cards[index]
+//            let button = buttonCards[index]
+           let card = game.cards[ MyView.allmyViews[index].id]
             
             if (card.isMatched){
-                button.setAttributedTitle(NSAttributedString(string: ""), for: .normal)
-                button.backgroundColor = #colorLiteral(red: 1, green: 0.5511779637, blue: 0, alpha: 0)
+               
+                MyView.allmyViews[index].isHidden = true
             }
             if (card.isBeingPlayed){
                 
               
-                  let myAttributedString = setAtrributes(card: card)
-                 button.setAttributedTitle(myAttributedString, for: .normal)
+                
+                
+//                  let myAttributedString = setAtrributes(card: card)
+//                 button.setAttributedTitle(myAttributedString, for: .normal)
                
             }
         }
@@ -184,4 +233,7 @@ class ViewController: UIViewController {
     
 
 }
+
+
+
 

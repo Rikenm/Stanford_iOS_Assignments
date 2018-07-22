@@ -8,12 +8,48 @@
 
 import UIKit
 
+
+protocol Click {
+    
+    func buttonClicked(myview:View2)
+}
+
 @IBDesignable
 class MyView: UIView {
     
     
+    var delegate: Click!
+    
+    static var  allmyViews = [View2]()
     
     
+    
+    
+    var type: [Int] = [] {
+        
+        didSet{
+            
+            setNeedsDisplay()
+            setNeedsLayout()
+        }
+    }
+    
+    
+    @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
+        // handling code
+        
+        print(sender?.view)
+        
+        if let view = sender?.view as? View2{
+            
+            
+           
+            
+             delegate.buttonClicked(myview:view )
+            
+        }
+//        delegate.buttonClicke(myview: (sender?.view)! )
+    }
     
    
 
@@ -42,7 +78,7 @@ class MyView: UIView {
     
         
         var myGrid = Grid(layout: layout,frame:bounds)
-        myGrid.cellCount = 2
+        myGrid.cellCount = 5
         
         
        
@@ -72,129 +108,37 @@ class MyView: UIView {
                 
                 let roundedRect2 = UIBezierPath(roundedRect:myframe, cornerRadius: 17)
                 
-                //roundedRect2.addClip() // clip everything(all the drawing ) outside of this view
+                 let myview = View2(frame: myframe)
+                  myview.backgroundColor = .clear
                 
                 UIColor.blue.setFill()
                 
+                
+                
+                
                 roundedRect2.fill()
                 
+                MyView.allmyViews.append(myview)
                 
-                // if you have only one
+                self.addSubview(myview)
                 
-//                    let ovalPath = UIBezierPath(ovalIn: CGRect(x: myframe.midX-myframe.width/6, y: myframe.midY-myframe.height/6, width: myframe.width/3, height: myframe.height/3))
-                
-               
-                // middle one
-              
-//                let ovalPath = UIBezierPath(ovalIn: CGRect(x: myframe.midX-myframe.height/6, y: myframe.midY-myframe.width/6, width: myframe.height/3, height: myframe.width/3))
-//
-//
-//
-//
-//
-//                UIColor.red.setStroke()
-//
-//
-//                ovalPath.stroke()
-                
-               // top
+                let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
+//                tap.delegate = self // This is not required
                 
                 
-//
-//                let ovalPath2 = UIBezierPath(ovalIn: CGRect(x: myframe.midX-myframe.height/6, y: myframe.minY, width: myframe.height/3, height: myframe.width/3))
-//
-//                let context = UIGraphicsGetCurrentContext()
-//                context?.saveGState()
-//                   ovalPath2.addClip()
-//
-//
-//               ovalPath2.lineWidth = 3
-//
-//
-//                   UIColor.red.setStroke()
-//
-//                 ovalPath2.stroke()
-//
-//                // first line
-//                let stripes = UIBezierPath()
-//                stripes.move(to: CGPoint(x: x, y: y+10))
-//                stripes.addLine(to: CGPoint(x: x+width-2, y: y+10))
-//
-//                stripes.lineWidth = 2
-//
-//
-//                 UIColor.red.setStroke()
-//
-//                stripes.close()
-//
-//
-//
-//
-//                stripes.stroke()
-//
-//                //second line
-//
-//                let stripes2 = UIBezierPath()
-//                stripes2.move(to: CGPoint(x: x, y: y+16))
-//                stripes2.addLine(to: CGPoint(x: x+width-2, y: y+16))
-//
-//                stripes2.lineWidth = 2
-//
-//                UIColor.red.setStroke()
-//
-//                stripes2.close()
-//
-//
-//
-//
-//                stripes2.stroke()
-//
-//
-//
-//                context?.restoreGState()
-//
-//
-//                // down
-//                let diamond = UIBezierPath()
-//
-//                diamond.move(to: CGPoint(x: myframe.midX, y: myframe.midY+40))
-//                diamond.addLine(to: CGPoint(x: myframe.midX+8, y: myframe.midY+40+8))
-//                diamond.addLine(to: CGPoint(x: myframe.midX, y: myframe.midY+40+8+8))
-//                diamond.addLine(to: CGPoint(x: myframe.midX-8, y: myframe.midY+40+8))
-//
-//                diamond.close()
-//
-//
-//                diamond.lineWidth = 2
-//
-//                UIColor.red.setStroke()
-//
-//                diamond.stroke()
-//
-//                //middle weird
-//
-//                let weirdarch = UIBezierPath()
-//                weirdarch.move(to: CGPoint(x: myframe.midX+10, y: myframe.midY+myframe.width/6))
-//                weirdarch.addQuadCurve(to: CGPoint(x: myframe.midX-10, y: myframe.midY+myframe.width/6), controlPoint: CGPoint(x: myframe.midX, y: myframe.minY))
-//                weirdarch.close()
-//
-//
-//
-//
-////                let ovalPath = UIBezierPath(ovalIn: CGRect(x: myframe.midX-myframe.height/6, y: myframe.midY-myframe.width/6, width: myframe.height/3, height: myframe.width/3))
-//
-//
-//
-//                weirdarch.lineWidth = 2
-//
-//                                UIColor.red.setStroke()
-//
-//
-//                                weirdarch.stroke()
-//
- 
-             //drawOval(in: myframe, count: 1, withShade: 0)
-              drawDiamond(in: myframe, count: 3, withShade: 1)
+                myview.addGestureRecognizer(tap)
+                
+                if type == [] || type[i] == 0{
+
+                drawSquiggle(in: myframe, count: 3, withShade: 1)
+                    
+                }else if type[i] == 1{
+                    
+                    drawDiamond(in: myframe, count: 3, withShade: 1)
+                }else{
+                    
+                    drawOval(in: myframe, count: 3, withShade: 1)
+                }
                 
                 
                 
@@ -495,13 +439,7 @@ class MyView: UIView {
         
     }
     
-    
-    func drawSquiggle(in myframe:CGRect,count:Int,withShade shade:Int){
-        
-        
-        
-        
-    }
+   
     
     func drawDiamond(in myframe:CGRect,count:Int,withShade shade:Int){
         
@@ -830,6 +768,314 @@ class MyView: UIView {
     
     
     
+    func drawSquiggle(in myframe:CGRect,count:Int,withShade shade:Int){
+        
+        
+      
+        if count == 1{
+            // middle
+            
+            let weirdarch = UIBezierPath()
+            weirdarch.move(to: CGPoint(x: myframe.midX+0.2*myframe.width, y: myframe.midY+myframe.width/6))
+            weirdarch.addQuadCurve(to: CGPoint(x: myframe.midX-0.2*myframe.width, y: myframe.midY+myframe.width/6), controlPoint: CGPoint(x: myframe.midX, y: myframe.minY))
+            weirdarch.close()
+            
+            
+            
+          let context = UIGraphicsGetCurrentContext()
+            context?.saveGState()
+            weirdarch.addClip()
+            
+            weirdarch.lineWidth = 2
+            
+            UIColor.red.setStroke()
+            
+            
+            
+            if shade == 0{
+                // lines
+                let startPoint = CGPoint(x: 0, y: myframe.midY - 0.05 * myframe.height )
+                let endpoint = CGPoint(x: myframe.maxX, y: myframe.midY - 0.05 * myframe.height)
+                
+                
+                drawLines(in: [startPoint,endpoint], count: 1)
+                
+                let startPoint2 = CGPoint(x: 0, y: myframe.midY+0.05*myframe.height  )
+                let endpoint2 = CGPoint(x: myframe.maxX, y: myframe.midY+0.05*myframe.height )
+                
+                drawLines(in: [startPoint2,endpoint2], count: 1)
+                
+                
+                
+            }else if shade == 1 {
+                //fill
+                UIColor.red.setFill()
+                weirdarch.fill()
+                
+            }
+            
+            
+            
+            
+            weirdarch.stroke()
+             context?.restoreGState()
+            
+            
+            
+            
+        }else if count == 2{
+            
+            let weirdarch = UIBezierPath()
+            weirdarch.move(to: CGPoint(x: myframe.midX+0.1*myframe.width, y: myframe.minY+0.35*myframe.height))
+            weirdarch.addQuadCurve(to: CGPoint(x: myframe.midX-0.1*myframe.width, y: myframe.minY+0.35*myframe.height), controlPoint: CGPoint(x: myframe.midX, y: myframe.minY))
+            weirdarch.close()
+            
+            
+            
+            var context = UIGraphicsGetCurrentContext()
+            context?.saveGState()
+            weirdarch.addClip()
+            
+            weirdarch.lineWidth = 3
+            
+            UIColor.red.setStroke()
+            
+            
+            
+            if shade == 0{
+                // lines
+                let startPoint = CGPoint(x: 0, y:  myframe.minY+0.3*myframe.height )
+                let endpoint = CGPoint(x: myframe.maxX, y:  myframe.minY+0.3*myframe.height)
+                
+                
+                drawLines(in: [startPoint,endpoint], count: 1)
+                
+                let startPoint2 = CGPoint(x: 0, y: myframe.minY+0.25*myframe.height  )
+                let endpoint2 = CGPoint(x: myframe.maxX, y:  myframe.minY+0.25*myframe.height )
+                
+                drawLines(in: [startPoint2,endpoint2], count: 1)
+                
+                
+                
+            }else if shade == 1 {
+                //fill
+                UIColor.red.setFill()
+                weirdarch.fill()
+                
+            }
+            
+            
+            
+            
+            weirdarch.stroke()
+            context?.restoreGState()
+            
+            
+            
+            
+            let weirdarch2 = UIBezierPath()
+            weirdarch2.move(to: CGPoint(x: myframe.midX+0.1*myframe.width, y: myframe.maxY - 0.1 * myframe.height))
+            weirdarch2.addQuadCurve(to: CGPoint(x: myframe.midX-0.1*myframe.width, y: myframe.maxY - 0.1 * myframe.height), controlPoint: CGPoint(x: myframe.midX, y: myframe.midY))
+            weirdarch2.close()
+            
+            
+            
+            context = UIGraphicsGetCurrentContext()
+            context?.saveGState()
+            weirdarch2.addClip()
+            
+            weirdarch2.lineWidth = 3
+            
+            UIColor.red.setStroke()
+            
+            
+            
+            if shade == 0{
+                // lines
+                let startPoint = CGPoint(x: 0, y: myframe.maxY - 0.20 * myframe.height )
+                let endpoint = CGPoint(x: myframe.maxX, y: myframe.maxY - 0.20 * myframe.height)
+                
+                
+                drawLines(in: [startPoint,endpoint], count: 1)
+                
+                let startPoint2 = CGPoint(x: 0, y: myframe.maxY - 0.15*myframe.height  )
+                let endpoint2 = CGPoint(x: myframe.maxX, y:myframe.maxY - 0.15 * myframe.height  )
+                
+                drawLines(in: [startPoint2,endpoint2], count: 1)
+                
+                
+                
+            }else if shade == 1 {
+                //fill
+                UIColor.red.setFill()
+                weirdarch2.fill()
+                
+            }
+            
+            
+            
+            
+            weirdarch2.stroke()
+            context?.restoreGState()
+            
+            
+            
+            
+        }else{
+            
+            let weirdarch = UIBezierPath()
+            weirdarch.move(to: CGPoint(x: myframe.midX+0.1*myframe.width, y: myframe.minY+0.35*myframe.height))
+            weirdarch.addQuadCurve(to: CGPoint(x: myframe.midX-0.1*myframe.width, y: myframe.minY+0.35*myframe.height), controlPoint: CGPoint(x: myframe.midX, y: myframe.minY))
+            weirdarch.close()
+            
+            
+            
+            var context = UIGraphicsGetCurrentContext()
+            context?.saveGState()
+            weirdarch.addClip()
+            
+            weirdarch.lineWidth = 3
+            
+            UIColor.red.setStroke()
+            
+            
+            
+            if shade == 0{
+                // lines
+                let startPoint = CGPoint(x: 0, y:  myframe.minY+0.3*myframe.height )
+                let endpoint = CGPoint(x: myframe.maxX, y:  myframe.minY+0.3*myframe.height)
+                
+                
+                drawLines(in: [startPoint,endpoint], count: 1)
+                
+                let startPoint2 = CGPoint(x: 0, y: myframe.minY+0.25*myframe.height  )
+                let endpoint2 = CGPoint(x: myframe.maxX, y:  myframe.minY+0.25*myframe.height )
+                
+                drawLines(in: [startPoint2,endpoint2], count: 1)
+                
+                
+                
+            }else if shade == 1 {
+                //fill
+                UIColor.red.setFill()
+                weirdarch.fill()
+                
+            }
+            
+            
+            
+            
+            weirdarch.stroke()
+            context?.restoreGState()
+            
+            
+            
+            
+            let weirdarchm = UIBezierPath()
+            weirdarchm.move(to: CGPoint(x: myframe.midX+0.1*myframe.width, y: myframe.midY+0.09*myframe.height))
+            weirdarchm.addQuadCurve(to: CGPoint(x: myframe.midX-0.1*myframe.width, y: myframe.midY+0.09*myframe.height), controlPoint: CGPoint(x: myframe.midX, y: myframe.midY-0.27*myframe.height))
+            weirdarchm.close()
+            
+            
+            
+            context = UIGraphicsGetCurrentContext()
+            context?.saveGState()
+            weirdarchm.addClip()
+            
+            weirdarchm.lineWidth = 3
+            
+            UIColor.red.setStroke()
+            
+            
+            
+            if shade == 0{
+                // lines
+                let startPoint = CGPoint(x: 0, y: myframe.midY - 0.01 * myframe.height )
+                let endpoint = CGPoint(x: myframe.maxX, y: myframe.midY - 0.01 * myframe.height)
+                
+                
+                drawLines(in: [startPoint,endpoint], count: 1)
+                
+                let startPoint2 = CGPoint(x: 0, y: myframe.midY+0.05*myframe.height  )
+                let endpoint2 = CGPoint(x: myframe.maxX, y: myframe.midY+0.05*myframe.height )
+                
+                drawLines(in: [startPoint2,endpoint2], count: 1)
+                
+                
+                
+            }else if shade == 1 {
+                //fill
+                UIColor.red.setFill()
+                weirdarchm.fill()
+                
+            }
+            
+            
+            
+            
+            weirdarchm.stroke()
+            context?.restoreGState()
+            
+            
+            
+            
+            
+            let weirdarch2 = UIBezierPath()
+            weirdarch2.move(to: CGPoint(x: myframe.midX+0.1*myframe.width, y: myframe.maxY - 0.1 * myframe.height))
+            weirdarch2.addQuadCurve(to: CGPoint(x: myframe.midX-0.1*myframe.width, y: myframe.maxY - 0.1 * myframe.height), controlPoint: CGPoint(x: myframe.midX, y: myframe.midY))
+            weirdarch2.close()
+            
+            
+            
+            context = UIGraphicsGetCurrentContext()
+            context?.saveGState()
+            weirdarch2.addClip()
+            
+            weirdarch2.lineWidth = 3
+            
+            UIColor.red.setStroke()
+            
+            
+            
+            if shade == 0{
+                // lines
+                let startPoint = CGPoint(x: 0, y: myframe.maxY - 0.20 * myframe.height )
+                let endpoint = CGPoint(x: myframe.maxX, y: myframe.maxY - 0.20 * myframe.height)
+                
+                
+                drawLines(in: [startPoint,endpoint], count: 1)
+                
+                let startPoint2 = CGPoint(x: 0, y: myframe.maxY - 0.15*myframe.height  )
+                let endpoint2 = CGPoint(x: myframe.maxX, y:myframe.maxY - 0.15 * myframe.height  )
+                
+                drawLines(in: [startPoint2,endpoint2], count: 1)
+                
+                
+                
+            }else if shade == 1 {
+                //fill
+                UIColor.red.setFill()
+                weirdarch2.fill()
+                
+            }
+            
+            
+            
+            
+            weirdarch2.stroke()
+            context?.restoreGState()
+            
+            
+            
+        }
+        
+        
+        
+        
+    }
+    
+    
+    
     func drawLines(in points:[CGPoint],count:Int){
         // up, middle, down
         
@@ -867,6 +1113,36 @@ class MyView: UIView {
     
 
 }
+
+
+class View2:UIView{
+    
+    var id:Int!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        
+        
+        self.id = identifierMaker.id + 1
+        
+        identifierMaker.id += 1
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
+}
+
+
+struct identifierMaker{
+    static var id = -1
+    
+}
+
 
 
 
