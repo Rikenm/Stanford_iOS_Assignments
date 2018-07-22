@@ -293,6 +293,20 @@ import UIKit
 
 // zerg has reference to foo, foo is a closure and captures self AKA zerg, creating a memory cycle
 
+//----------------------userdefault-------------------
+// userdefault
+
+
+//  let defaults = UserDefaults.standard
+// defaults.set(String or array or anything, forKey:"TodoListArray") to save
+
+// to get bakc
+// if let item = default.array//string//int(forKey:) as? array//string//int{
+//
+//}
+
+
+
 
 
 
